@@ -105,6 +105,8 @@ exports.handlePaymentNotification = async ( req, res, next ) => {
         /* retrieve request body/payment information */
         const requestBody = req.body;
 
+        console.log('requestBody', requestBody)
+
         /* You might want to re-verify if the transaction is indeed legit  */
 
         const config = {
@@ -117,8 +119,9 @@ exports.handlePaymentNotification = async ( req, res, next ) => {
         //https://developer.flutterwave.com/docs/transaction-verification
 
         let verification = await Axios.get( `https://api.flutterwave.com/v3/transactions/${ requestBody.data.id }/verify`, config );
+        
         verification = verification.data;
-
+console.log('verification',verification)
 
         if ( verification.status !== 'success' ) {
             /* Not a valid transaction */
