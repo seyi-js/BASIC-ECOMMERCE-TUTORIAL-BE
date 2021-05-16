@@ -85,7 +85,7 @@ exports.handlePaymentNotification = async ( req, res, next ) => {
         //https://developer.flutterwave.com/docs/events
 
         /*return a 200 status code to FLW  */
-        res.send( 200 );
+        res.sendStatus( 200 );
 
         const mySecretHash = '123456780nxnnnnxxx'//It must be thesame with the hash on your dashbord.
 
@@ -105,7 +105,7 @@ exports.handlePaymentNotification = async ( req, res, next ) => {
         /* retrieve request body/payment information */
         const requestBody = req.body;
 
-        console.log('requestBody', requestBody)
+        
 
         /* You might want to re-verify if the transaction is indeed legit  */
 
@@ -121,7 +121,7 @@ exports.handlePaymentNotification = async ( req, res, next ) => {
         let verification = await Axios.get( `https://api.flutterwave.com/v3/transactions/${ requestBody.data.id }/verify`, config );
         
         verification = verification.data;
-console.log('verification',verification)
+
 
         if ( verification.status !== 'success' ) {
             /* Not a valid transaction */
@@ -134,7 +134,7 @@ console.log('verification',verification)
 
             
         /* Verify certain parameters  */
-        if ( requestBody.tx_ref !== verification.data.tx_ref
+        if ( requestBody.data.tx_ref !== verification.data.tx_ref
             || verification.data.currency !== 'NGN') {
             console.log( 'Not a legit transaction.' );
 
