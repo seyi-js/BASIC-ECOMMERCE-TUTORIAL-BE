@@ -1,6 +1,6 @@
 const express = require( 'express' );
 const { verifyToken } = require( '../../helper/middlewares' );
-const { handleInitiatePayment } = require( './payment_middlewares' );
+const { handleInitiatePayment, handlePaymentNotification } = require( './payment_middlewares' );
 const router = express.Router();
 
 
@@ -18,7 +18,7 @@ router.post( '/initiate', verifyToken,handleInitiatePayment );
 
 //POST initiate payment api/payment/notification
 
-router.post( '/notification' );
+router.post( '/notification',handlePaymentNotification );
 
 
 
