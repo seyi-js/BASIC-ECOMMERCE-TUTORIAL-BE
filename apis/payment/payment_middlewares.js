@@ -85,7 +85,7 @@ exports.handlePaymentNotification = async ( req, res, next ) => {
         //https://developer.flutterwave.com/docs/events
 
         /*return a 200 status code to FLW  */
-        res.status( 200 );
+        res.send( 200 );
 
         const mySecretHash = '123456780nxnnnnxxx'//It must be thesame with the hash on your dashbord.
 
