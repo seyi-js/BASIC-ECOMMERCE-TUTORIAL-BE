@@ -116,7 +116,7 @@ exports.handlePaymentNotification = async ( req, res, next ) => {
 
         //https://developer.flutterwave.com/docs/transaction-verification
 
-        const verification = await Axios.get( `https://api.flutterwave.com/v3/transactions/${ requestBody.data.id }/verify`, config );
+        let verification = await Axios.get( `https://api.flutterwave.com/v3/transactions/${ requestBody.data.id }/verify`, config );
         verification = verification.data;
 
 
